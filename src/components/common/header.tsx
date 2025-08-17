@@ -1,99 +1,102 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderLayout from '../layouts/header-layout'
 import Image from 'next/image'
-import Link from 'next/link'
+import { motion } from 'framer-motion'
+
+type NavItemsType = {
+    label: string
+    href: string
+}
+
+const navItems: NavItemsType[] = [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about-us' },
+    { label: 'Games', href: '#games' },
+    { label: 'Rules', href: '#rules' },
+    { label: 'Contact', href: '#contact' },
+]
 
 const Header = () => {
-    const navRef = useRef<HTMLElement>(null)
+    const [active, setActive] = useState('Home')
 
     useEffect(() => {
-        const updateMask = () => {
-            if (navRef.current) {
-                const rect = navRef.current.getBoundingClientRect()
-                const headerRect = navRef.current
-                    .closest('.fixed')
-                    ?.getBoundingClientRect()
+        const sections = navItems
+            .map((item) =>
+                item.href !== '#' ? document.querySelector(item.href) : null
+            )
+            .filter(Boolean) as HTMLElement[]
 
-                if (headerRect) {
-                    const x = rect.left - headerRect.left
-                    const y = rect.top - headerRect.top
-                    const width = rect.width
-                    const height = rect.height
-                    const borderRadius = height / 2 // rounded-full effect
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id')
+                        const match = navItems.find(
+                            (item) => item.href === `#${id}`
+                        )
+                        if (match) {
+                            setActive(match.label)
 
-                    // Create a rounded rectangle mask using CSS paint function simulation
-                    const maskValue = `radial-gradient(${borderRadius}px at ${
-                        x + borderRadius
-                    }px ${y + height / 2}px, transparent ${
-                        borderRadius - 1
-                    }px, black ${borderRadius}px),
-                                     radial-gradient(${borderRadius}px at ${
-                                         x + width - borderRadius
-                                     }px ${y + height / 2}px, transparent ${
-                                         borderRadius - 1
-                                     }px, black ${borderRadius}px),
-                                     linear-gradient(to right, transparent ${x}px, black ${
-                                         x + borderRadius
-                                     }px, black ${x + width - borderRadius}px, transparent ${
-                                         x + width
-                                     }px),
-                                     linear-gradient(to bottom, transparent ${y}px, black ${y}px, black ${
-                                         y + height
-                                     }px, transparent ${y + height}px)`
+                            history.replaceState(null, '', `#${id}`)
+                        }
+                    }
+                })
+            },
+            { threshold: 0.6 }
+        )
 
-                    document.documentElement.style.setProperty(
-                        '--nav-mask',
-                        maskValue
-                    )
-                }
-            }
-        }
-
-        // Update mask on mount and resize
-        updateMask()
-        window.addEventListener('resize', updateMask)
-
-        return () => window.removeEventListener('resize', updateMask)
+        sections.forEach((section) => observer.observe(section))
+        return () => observer.disconnect()
     }, [])
+
+    const handleScrollTo = (href: string, label: string) => {
+        const target = document.querySelector(href)
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            setActive(label)
+            history.replaceState(null, '', href)
+        }
+    }
 
     return (
         <HeaderLayout>
             <div className="flex w-full items-center justify-between">
                 <Image
-                    src={'/vr-logo.svg'}
+                    src="/vr-logo.svg"
                     alt="vr-logo"
                     width={120}
                     height={32}
                     className="max-h-[32px]"
                 />
 
-                <nav
-                    ref={navRef}
-                    className="ring-primary-red relative flex max-h-[36px] items-center gap-6 overflow-hidden rounded-full bg-black/10 py-1 pr-6 pl-1 text-sm text-[10px] tracking-widest uppercase ring-1"
-                >
-                    <Link
-                        href={'#'}
-                        className="bg-primary-red relative z-10 h-full rounded-full px-3 py-2"
-                    >
-                        Home
-                    </Link>
-                    <Link href={'#about-us'} className="relative z-10">
-                        About
-                    </Link>
-                    <Link href={'#games'} className="relative z-10">
-                        Games
-                    </Link>
-                    <Link href={'#rules'} className="relative z-10">
-                        Rules
-                    </Link>
-                    <Link href={'#contact'} className="relative z-10">
-                        Contact
-                    </Link>
+                <nav className="bg-primary-red/20 ring-primary-red relative flex items-center rounded-full p-1 text-xs font-medium uppercase ring-1 backdrop-blur-[12px]">
+                    {navItems.map((item) => (
+                        <button
+                            key={item.label}
+                            onClick={() =>
+                                handleScrollTo(item.href, item.label)
+                            }
+                            className="relative z-10 rounded-full px-3 py-1 text-[10px] tracking-widest text-white uppercase transition-colors"
+                        >
+                            {active === item.label && (
+                                <motion.div
+                                    layoutId="active-pill"
+                                    className="bg-primary-red absolute inset-0 z-[-1] rounded-full"
+                                    transition={{
+                                        type: 'spring',
+                                        stiffness: 300,
+                                        damping: 30,
+                                    }}
+                                />
+                            )}
+                            <a href={item.href}>{item.label}</a>
+                        </button>
+                    ))}
                 </nav>
 
-                <button className="bg-primary-red cursor-pointer rounded-full px-3 py-[10px] text-[10px] tracking-widest uppercase">
+                <button className="bg-primary-red cursor-pointer rounded-full px-4 py-2 text-[10px] font-semibold tracking-widest text-white uppercase shadow-lg">
                     Register Now
                 </button>
             </div>
