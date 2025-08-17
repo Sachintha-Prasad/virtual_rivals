@@ -6,7 +6,7 @@ import CountDownSection from './landing/count-down-section'
 
 const LandingPage = () => {
     return (
-        <>
+        <div className="cursor-none">
             <Header />
 
             <main>
@@ -14,7 +14,7 @@ const LandingPage = () => {
                 <AboutUsSection />
                 <CountDownSection />
             </main>
-        </>
+        </div>
     )
 }
 

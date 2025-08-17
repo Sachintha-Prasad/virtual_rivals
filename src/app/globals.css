@@ -52,6 +52,11 @@ body {
     color: var(--foreground);
 }
 
+a,
+button {
+    cursor: none;
+}
+
 .text-stroke {
     color: white;
     -webkit-text-stroke: 2px transparent;

@@ -1,7 +1,8 @@
 import React from 'react'
 import LandingPageLayout from '../../components/layouts/landing-page-layout'
 import Image from 'next/image'
-import ParticleWave from '../../components/common/particle-wave'
+import ParticleWave from '../../components/animation/particle-wave'
+import CustomCursor from '@/components/animation/custom-cursor'
 
 const HeroSection = () => {
     return (
@@ -10,6 +11,8 @@ const HeroSection = () => {
             <div className="absolute -bottom-12 -z-20 h-full w-full">
                 <ParticleWave />
             </div>
+
+            <CustomCursor />
 
             <LandingPageLayout>
                 <div className="flex min-h-[80vh] w-full flex-col items-center justify-center gap-6">
