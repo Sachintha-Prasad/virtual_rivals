@@ -6,10 +6,10 @@ const AboutUsSection = () => {
     return (
         <section
             id="about-us"
-            className="bg-conic-180 from-[#A2021D] to-[#6B0113] to-50%"
+            className="bg-linear-to-r from-[#6B0113] via-[#D10225] to-[#6B0113]"
         >
             <LandingPageLayout>
-                <div className="flex flex-col items-center gap-12 text-[#000000]">
+                <div className="flex flex-col items-center gap-12">
                     <h2 className="text-center text-[26px] font-bold">
                         Where Skill Meets Strategy
                     </h2>
@@ -34,7 +34,7 @@ const AboutUsSection = () => {
                         </p>
 
                         <Image
-                            src={'/about-us-img.svg'}
+                            src={'/images/hero-img.svg'}
                             alt="about us image"
                             width={432}
                             height={175}
