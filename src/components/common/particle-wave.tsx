@@ -25,7 +25,7 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({
     backgroundColor = 0x0b0b0b,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null)
-    const animationFrameId = useRef<number>()
+    const animationFrameId = useRef<number>(0)
     const time = useRef<number>(0)
 
     useEffect(() => {
