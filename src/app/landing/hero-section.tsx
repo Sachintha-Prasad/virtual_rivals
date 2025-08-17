@@ -1,11 +1,16 @@
 import React from 'react'
 import LandingPageLayout from '../../components/layouts/landing-page-layout'
 import Image from 'next/image'
+import ParticleWave from '../../components/common/particle-wave'
 
 const HeroSection = () => {
     return (
         <section id="home" className="relative min-h-screen">
             <div className="absolute -z-10 min-h-[90vh] w-full bg-[url('/hero-flag-bg.svg')] bg-contain bg-top bg-no-repeat"></div>
+            <div className="absolute -bottom-12 -z-20 h-full w-full">
+                <ParticleWave />
+            </div>
+
             <LandingPageLayout>
                 <div className="flex min-h-[80vh] w-full flex-col items-center justify-center gap-6">
                     <Image
