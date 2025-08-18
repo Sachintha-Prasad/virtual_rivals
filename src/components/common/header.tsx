@@ -20,6 +20,7 @@ const navItems: NavItemsType[] = [
 
 const Header = () => {
     const [active, setActive] = useState('Home')
+    const [isScrolling, setIsScrolling] = useState(false)
 
     useEffect(() => {
         const sections = navItems
@@ -30,6 +31,8 @@ const Header = () => {
 
         const observer = new IntersectionObserver(
             (entries) => {
+                if (isScrolling) return
+
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id')
@@ -38,7 +41,6 @@ const Header = () => {
                         )
                         if (match) {
                             setActive(match.label)
-
                             history.replaceState(null, '', `#${id}`)
                         }
                     }
@@ -49,14 +51,19 @@ const Header = () => {
 
         sections.forEach((section) => observer.observe(section))
         return () => observer.disconnect()
-    }, [])
+    }, [isScrolling])
 
     const handleScrollTo = (href: string, label: string) => {
         const target = document.querySelector(href)
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            setIsScrolling(true)
             setActive(label)
             history.replaceState(null, '', href)
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+            // unlock observer after scroll finishes (~700ms is enough for smooth scroll)
+            setTimeout(() => setIsScrolling(false), 700)
         }
     }
 

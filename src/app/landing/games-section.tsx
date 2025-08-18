@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 const images = [
     '/games-images/cod-img.svg',
@@ -14,62 +14,62 @@ const images = [
 ]
 
 const GamesSection = () => {
-    const [isDragging, setIsDragging] = useState(false)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const scrollerRef = useRef<HTMLDivElement>(null)
+    const [sectionHeight, setSectionHeight] = useState(0)
+    const [totalScrollWidth, setTotalScrollWidth] = useState(0)
+
+    useEffect(() => {
+        const calcWidths = () => {
+            if (!scrollerRef.current) return
+            const containerWidth = scrollerRef.current.scrollWidth
+            const viewportWidth = window.innerWidth
+            const scrollWidth = containerWidth - viewportWidth
+
+            setTotalScrollWidth(scrollWidth > 0 ? scrollWidth : 0)
+            setSectionHeight(
+                window.innerHeight + (scrollWidth > 0 ? scrollWidth : 0)
+            )
+        }
+
+        calcWidths()
+        window.addEventListener('resize', calcWidths)
+        return () => window.removeEventListener('resize', calcWidths)
+    }, [])
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ['start start', 'end end'],
+    })
+
+    const x = useTransform(scrollYProgress, [1, 0], [0, -totalScrollWidth])
 
     return (
-        <section
-            id="games"
-            className="bg-background flex min-h-screen items-center overflow-hidden py-3"
-        >
-            <motion.div
-                className="flex gap-3"
-                drag="x"
-                dragConstraints={{ left: -1500, right: 0 }}
-                animate={
-                    !isDragging
-                        ? { x: ['0%', '-100%'] } // auto scroll
-                        : undefined // stop anim while dragging
-                }
-                transition={
-                    !isDragging
-                        ? { repeat: Infinity, ease: 'linear', duration: 20 }
-                        : undefined
-                }
-                onDragStart={() => setIsDragging(true)}
-                onDragEnd={() => setIsDragging(false)}
-            >
-                {/* Always render first set */}
-                {images.map((src, i) => (
-                    <div
-                        key={`set1-${i}`}
-                        className="flex-shrink-0 overflow-hidden rounded-lg"
+        <section ref={containerRef} id="games" className="flex h-[60vh]">
+            <div style={{ height: sectionHeight }} className="relative">
+                <div className="bg-background top-0 flex items-center overflow-hidden">
+                    <motion.div
+                        ref={scrollerRef}
+                        style={{ x }}
+                        className="flex gap-3 py-3"
                     >
-                        <Image
-                            src={src}
-                            alt={`game-${i}`}
-                            width={300}
-                            height={160}
-                            className="transition-transform duration-300 hover:scale-105"
-                        />
-                    </div>
-                ))}
-
-                {/* Render second set ONLY when auto-scroll is active */}
-                {!isDragging &&
-                    images.map((src, i) => (
-                        <div
-                            key={`set2-${i}`}
-                            className="flex-shrink-0 overflow-hidden rounded-lg"
-                        >
-                            <Image
-                                src={src}
-                                alt={`game-${i}`}
-                                width={300}
-                                height={160}
-                            />
-                        </div>
-                    ))}
-            </motion.div>
+                        {images.map((src, i) => (
+                            <div
+                                key={i}
+                                className="h-[60vh] w-full max-w-[360px] flex-shrink-0 overflow-hidden rounded-xl"
+                            >
+                                <Image
+                                    src={src}
+                                    alt={`game-${i}`}
+                                    width={360}
+                                    height={200}
+                                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                                />
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
         </section>
     )
 }
