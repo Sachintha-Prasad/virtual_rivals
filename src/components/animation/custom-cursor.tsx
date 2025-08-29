@@ -42,7 +42,7 @@ const CustomCursor = () => {
                 y: position.y - 12,
                 scale: isHovering ? 2 : 1,
             }}
-            transition={{ type: 'spring', stiffness: 500, damping: 50 }}
+            transition={{ type: 'spring', stiffness: 1000, damping: 100 }}
         >
             <div
                 className={`bg-primary-red/30 h-6 w-6 rounded-full border-2 mix-blend-difference ${isHovering ? 'border-white' : 'border-primary-red'}`}

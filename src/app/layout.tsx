@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Chakra_Petch } from 'next/font/google'
 import './globals.css'
 
@@ -12,12 +12,17 @@ export const metadata: Metadata = {
     description: 'Virtual rivals definitive edition',
 }
 
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+}
+
 export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
-            <body className={`${chakraPetch.className}`}>{children}</body>
+        <html lang="en" className={`${chakraPetch.className}`}>
+            <body>{children}</body>
         </html>
     )
 }

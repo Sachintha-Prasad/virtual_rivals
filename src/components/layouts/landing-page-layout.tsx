@@ -6,7 +6,7 @@ type LandingPageLayoutProps = {
 
 const LandingPageLayout = ({ children }: LandingPageLayoutProps) => {
     return (
-        <div className="mx-auto max-w-full px-[160px] py-[80px]">
+        <div className="mx-auto max-w-full px-6 py-[80px] lg:px-[160px]">
             {children}
         </div>
     )

@@ -6,7 +6,7 @@ const RulesSection = () => {
     return (
         <section
             id="rules"
-            className="bg-[url('/images/rules-bg.svg')] bg-size-[100%] bg-top bg-no-repeat"
+            className="mb-32 bg-[url('/images/rules-bg.svg')] bg-size-[100%] bg-top bg-no-repeat"
         >
             <LandingPageLayout>
                 <div className="flex flex-col items-center gap-8">

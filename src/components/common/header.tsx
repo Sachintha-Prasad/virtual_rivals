@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import HeaderLayout from '../layouts/header-layout'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FiMenu, FiX } from 'react-icons/fi'
 
 type NavItemsType = {
     label: string
@@ -21,6 +22,7 @@ const navItems: NavItemsType[] = [
 const Header = () => {
     const [active, setActive] = useState('Home')
     const [isScrolling, setIsScrolling] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     useEffect(() => {
         const sections = navItems
@@ -46,12 +48,22 @@ const Header = () => {
                     }
                 })
             },
-            { threshold: 0.6 }
+            { threshold: 0.5 }
         )
 
         sections.forEach((section) => observer.observe(section))
         return () => observer.disconnect()
     }, [isScrolling])
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) {
+                setIsMenuOpen(false)
+            }
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     const handleScrollTo = (href: string, label: string) => {
         const target = document.querySelector(href)
@@ -61,51 +73,116 @@ const Header = () => {
             history.replaceState(null, '', href)
 
             target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
-            // unlock observer after scroll finishes (~700ms is enough for smooth scroll)
             setTimeout(() => setIsScrolling(false), 700)
         }
+        setIsMenuOpen(false)
     }
 
     return (
         <HeaderLayout>
             <div className="flex w-full items-center justify-between">
+                {/* Logo */}
                 <Image
                     src="/logo/vr-logo.svg"
                     alt="vr-logo"
-                    width={120}
+                    width={90}
                     height={32}
-                    className="max-h-[32px]"
                 />
 
-                <nav className="bg-primary-red/20 ring-primary-red relative flex items-center rounded-full p-1 text-xs font-medium uppercase ring-1 backdrop-blur-[12px]">
+                {/* Desktop Nav */}
+                <nav className="relative hidden items-center space-x-8 text-xs font-medium uppercase lg:flex">
                     {navItems.map((item) => (
                         <button
                             key={item.label}
                             onClick={() =>
                                 handleScrollTo(item.href, item.label)
                             }
-                            className="relative z-10 rounded-full px-3 py-1 text-[10px] tracking-widest text-white uppercase transition-colors"
+                            className="relative px-2 py-2 text-sm font-bold tracking-widest text-white uppercase transition-colors"
                         >
+                            {/* Label */}
+                            <span
+                                className={`transition-colors ${
+                                    active === item.label
+                                        ? 'text-primary-red'
+                                        : 'text-white'
+                                }`}
+                            >
+                                {item.label}
+                            </span>
+
+                            {/* Nav-indicator */}
                             {active === item.label && (
                                 <motion.div
-                                    layoutId="active-pill"
-                                    className="bg-primary-red absolute inset-0 z-[-1] rounded-full"
+                                    layoutId="active-indicator"
+                                    className="absolute top-[80%] left-1/2 -translate-x-1/2"
                                     transition={{
                                         type: 'spring',
                                         stiffness: 300,
                                         damping: 30,
                                     }}
-                                />
+                                >
+                                    <Image
+                                        src="/icons/nav-indicator.svg"
+                                        alt="nav-indicator"
+                                        width={120}
+                                        height={32}
+                                    />
+                                </motion.div>
                             )}
-                            <a href={item.href}>{item.label}</a>
                         </button>
                     ))}
                 </nav>
 
-                <button className="bg-primary-red cursor-pointer rounded-full px-4 py-2 text-[10px] font-semibold tracking-widest text-white uppercase shadow-lg">
+                {/* Desktop CTA */}
+                <button className="bg-primary-red relative hidden px-4 py-2 text-sm font-medium tracking-widest text-white uppercase shadow-lg lg:block">
                     Register Now
                 </button>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="bg-primary-red rounded-md p-2 text-white lg:hidden"
+                >
+                    {isMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+                </button>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.div
+                            key="mobile-menu"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 bg-black/90 text-white backdrop-blur-md"
+                        >
+                            <button
+                                onClick={() => setIsMenuOpen(false)}
+                                className="absolute top-6 right-6 text-white"
+                            >
+                                <FiX size={28} />
+                            </button>
+
+                            {navItems.map((item) => (
+                                <motion.button
+                                    key={item.href}
+                                    onClick={() =>
+                                        handleScrollTo(item.href, item.label)
+                                    }
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.1 }}
+                                    className="text-2xl font-thin tracking-widest uppercase"
+                                >
+                                    {item.label}
+                                </motion.button>
+                            ))}
+                            <button className="bg-primary-red rounded-full px-6 py-3 text-sm font-semibold tracking-widest uppercase shadow-lg">
+                                Register Now
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </HeaderLayout>
     )

@@ -1,8 +1,7 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 const images = [
     '/games-images/cod-img.svg',
@@ -15,60 +14,49 @@ const images = [
 
 const GamesSection = () => {
     const containerRef = useRef<HTMLDivElement>(null)
-    const scrollerRef = useRef<HTMLDivElement>(null)
-    const [sectionHeight, setSectionHeight] = useState(0)
-    const [totalScrollWidth, setTotalScrollWidth] = useState(0)
 
     useEffect(() => {
-        const calcWidths = () => {
-            if (!scrollerRef.current) return
-            const containerWidth = scrollerRef.current.scrollWidth
-            const viewportWidth = window.innerWidth
-            const scrollWidth = containerWidth - viewportWidth
+        const container = containerRef.current
+        if (!container) return
 
-            setTotalScrollWidth(scrollWidth > 0 ? scrollWidth : 0)
-            setSectionHeight(
-                window.innerHeight + (scrollWidth > 0 ? scrollWidth : 0)
-            )
+        const children = Array.from(container.children)
+        children.forEach((child) => {
+            const clone = child.cloneNode(true)
+            container.appendChild(clone)
+        })
+
+        let scroll = 0
+        const speed = 1
+
+        const animate = () => {
+            scroll += speed
+            if (container.scrollWidth / 2 <= scroll) {
+                scroll = 0
+            }
+            container.scrollLeft = scroll
+            requestAnimationFrame(animate)
         }
 
-        calcWidths()
-        window.addEventListener('resize', calcWidths)
-        return () => window.removeEventListener('resize', calcWidths)
+        animate()
     }, [])
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start start', 'end end'],
-    })
-
-    const x = useTransform(scrollYProgress, [1, 0], [0, -totalScrollWidth])
-
     return (
-        <section ref={containerRef} id="games" className="flex h-[60vh]">
-            <div style={{ height: sectionHeight }} className="relative">
-                <div className="bg-background top-0 flex items-center overflow-hidden">
-                    <motion.div
-                        ref={scrollerRef}
-                        style={{ x }}
-                        className="flex gap-3 py-3"
+        <section id="games" className="bg-background w-full overflow-hidden">
+            <div ref={containerRef} className="flex gap-3 overflow-hidden py-3">
+                {images.map((src, i) => (
+                    <div
+                        key={i}
+                        className="h-[60vh] w-full max-w-[360px] flex-shrink-0 overflow-hidden rounded-xl"
                     >
-                        {images.map((src, i) => (
-                            <div
-                                key={i}
-                                className="h-[60vh] w-full max-w-[360px] flex-shrink-0 overflow-hidden rounded-xl"
-                            >
-                                <Image
-                                    src={src}
-                                    alt={`game-${i}`}
-                                    width={360}
-                                    height={200}
-                                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                                />
-                            </div>
-                        ))}
-                    </motion.div>
-                </div>
+                        <Image
+                            src={src}
+                            alt={`game-${i}`}
+                            width={360}
+                            height={200}
+                            className="pointer-events-none h-full w-full object-cover"
+                        />
+                    </div>
+                ))}
             </div>
         </section>
     )
