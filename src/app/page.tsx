@@ -5,6 +5,7 @@ import React from 'react'
 import CountDownSection from './landing/count-down-section'
 import RulesSection from './landing/rules-section'
 import GamesSection from './landing/games-section'
+import PriceSection from './landing/price-section'
 
 const LandingPage = () => {
     return (
@@ -19,6 +20,7 @@ const LandingPage = () => {
                 <CountDownSection targetDate={'2025-09-15'} />
                 <GamesSection />
                 <RulesSection />
+                <PriceSection />
             </main>
         </div>
     )
