@@ -33,63 +33,71 @@ const PriceSection = () => {
                 {/* Days Section */}
                 <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                     {/* Registration Open */}
-                    <div className="h-[273px] w-auto items-center justify-start rounded-lg border-2 border-[#580110] bg-[#15151C] p-[20px]">
+                    <div className="group relative h-[273px] w-auto cursor-pointer items-center justify-start rounded-lg border-b-2 border-l-2 border-[#580110] bg-[#15151C] p-[20px] transition-all duration-500 hover:skew-y-1">
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] opacity-0 transition-opacity delay-1000 duration-300 group-hover:opacity-100"></div>
                         <Image
                             src="/images/open.png"
                             alt=""
                             width={50}
                             height={50}
                         />
-                        <div className='mt-24'>
-                            <h3 className="font-bold uppercase mb-2">
-                            Registration Open
-                        </h3>
-                        <p>2025-08-30</p>
+                        <div className="mt-24">
+                            <h3 className="mb-2 font-bold uppercase">
+                                Registration Open
+                            </h3>
+                            <p>2025-08-30</p>
                         </div>
                     </div>
                     {/* Registration Close */}
-                    <div className="h-[273px] w-auto items-center justify-start rounded-lg border-2 border-[#580110] bg-[#15151C] p-[20px]">
+                    <div className="group relative h-[273px] w-auto cursor-pointer items-center justify-start rounded-lg border-b-2 border-l-2 border-[#580110] bg-[#15151C] p-[20px] transition-all duration-500 hover:skew-y-1">
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] opacity-0 transition-opacity delay-1000 duration-300 group-hover:opacity-100"></div>{' '}
                         <Image
                             src="/images/delete_user.png"
                             alt=""
                             width={50}
                             height={50}
                         />
-                        <div className='mt-24'>
-                            <h3 className="font-bold uppercase mb-2">
-                            Registration Close
-                        </h3>
-                        <p>2025-08-30</p>
+                        <div className="mt-24">
+                            <h3 className="mb-2 font-bold uppercase">
+                                Registration Close
+                            </h3>
+                            <p>2025-08-30</p>
                         </div>
                     </div>
                     {/* Team Draw */}
-                    <div className="h-[273px] w-auto items-center justify-start rounded-lg border-2 border-[#580110] bg-[#15151C] p-[20px]">
+                    <div className="group relative h-[273px] w-auto cursor-pointer items-center justify-start rounded-lg border-b-2 border-l-2 border-[#580110] bg-[#15151C] p-[20px] transition-all duration-500 hover:skew-y-1">
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] opacity-0 transition-opacity delay-1000 duration-300 group-hover:opacity-100"></div>{' '}
                         <Image
                             src="/images/billboard.png"
                             alt=""
                             width={50}
                             height={50}
                         />
-                        <div className='mt-24'>
-                            <h3 className="font-bold uppercase mb-2">
-                            Team Draw & Match Schedule
-                        </h3>
-                        <p>2025-08-30</p>
+                        <div className="mt-24">
+                            <h3 className="mb-2 font-bold uppercase">
+                                Team Draw & Match Schedule
+                            </h3>
+                            <p>2025-08-30</p>
                         </div>
                     </div>
                     {/* Event Day */}
-                    <div className="h-[273px] w-auto items-center justify-start rounded-lg border-2 border-[#580110] bg-[#15151C] p-[20px]">
+                    <div className="group relative h-[273px] w-auto cursor-pointer items-center justify-start rounded-lg border-b-2 border-l-2 border-[#580110] bg-[#15151C] p-[20px] transition-all duration-500 hover:skew-y-1">
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] transition-opacity duration-300 group-hover:opacity-0"></div>
+                        <div className="absolute top-0 right-0 h-full w-full rounded-lg border-t-2 border-r-2 border-[#580110] opacity-0 transition-opacity delay-500 duration-300 group-hover:opacity-100"></div>{' '}
                         <Image
                             src="/images/calendar.png"
                             alt=""
                             width={50}
                             height={50}
                         />
-                        <div className='mt-24'>
-                            <h3 className="font-bold uppercase mb-2">
-                            Virtual Rival Event Day
-                        </h3>
-                        <p>2025-08-30</p>
+                        <div className="mt-24">
+                            <h3 className="mb-2 font-bold uppercase">
+                                Virtual Rival Event Day
+                            </h3>
+                            <p>2025-08-30</p>
                         </div>
                     </div>
                 </div>
