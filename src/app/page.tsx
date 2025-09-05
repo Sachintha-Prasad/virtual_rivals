@@ -1,11 +1,12 @@
-import Header from '@/components/common/header'
-import AboutUsSection from '@/app/landing/about-us-section'
-import HeroSection from '@/app/landing/hero-section'
 import React from 'react'
+import Header from '@/components/common/header'
+import HeroSection from './landing/hero-section'
+import AboutUsSection from './landing/about-us-section'
 import CountDownSection from './landing/count-down-section'
-import RulesSection from './landing/rules-section'
 import GamesSection from './landing/games-section'
+import RulesSection from './landing/rules-section'
 import PriceSection from './landing/price-section'
+import TrailerSection from './landing/trailer-section'
 
 const LandingPage = () => {
     return (
@@ -17,9 +18,10 @@ const LandingPage = () => {
             <main>
                 <HeroSection />
                 <AboutUsSection />
-                <CountDownSection targetDate={'2025-09-15'} />
+                <CountDownSection targetDate={'2025-09-17'} />
                 <GamesSection />
                 <RulesSection />
+                <TrailerSection />
                 <PriceSection />
             </main>
         </div>

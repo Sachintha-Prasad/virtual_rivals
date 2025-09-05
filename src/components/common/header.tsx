@@ -5,6 +5,7 @@ import HeaderLayout from '../layouts/header-layout'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX } from 'react-icons/fi'
+import PrimaryButton from './primary-button'
 
 type NavItemsType = {
     label: string
@@ -48,7 +49,10 @@ const Header = () => {
                     }
                 })
             },
-            { threshold: 0.5 }
+            {
+                threshold: 0.5,
+                rootMargin: '0px 0px -20% 0px',
+            }
         )
 
         sections.forEach((section) => observer.observe(section))
@@ -134,9 +138,9 @@ const Header = () => {
                 </nav>
 
                 {/* Desktop CTA */}
-                <button className="bg-primary-red relative hidden px-4 py-2 text-sm font-medium tracking-widest text-white uppercase shadow-lg lg:block">
-                    Register Now
-                </button>
+                <div className="hidden lg:block">
+                    <PrimaryButton text="register now" size="small" />
+                </div>
 
                 {/* Mobile Menu Toggle */}
                 <button
@@ -177,9 +181,7 @@ const Header = () => {
                                     {item.label}
                                 </motion.button>
                             ))}
-                            <button className="bg-primary-red rounded-full px-6 py-3 text-sm font-semibold tracking-widest uppercase shadow-lg">
-                                Register Now
-                            </button>
+                            <PrimaryButton text="register now" size="base" />
                         </motion.div>
                     )}
                 </AnimatePresence>

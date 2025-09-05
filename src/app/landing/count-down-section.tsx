@@ -1,5 +1,6 @@
 'use client'
 
+import SectionHeader from '@/components/common/section-header'
 import LandingPageLayout from '@/components/layouts/landing-page-layout'
 import React, { useCallback, useEffect, useState } from 'react'
 
@@ -50,39 +51,33 @@ const CountDownSection = ({ targetDate }: CountdownProps) => {
 
             <LandingPageLayout>
                 <div className="flex flex-col items-center gap-12 px-4 md:gap-16">
-                    {/* Header */}
-                    <div className="flex flex-col items-center gap-4 text-center md:gap-8">
-                        <h2 className="text-4xl font-bold uppercase">
-                            Countdown to Rivalry
-                        </h2>
-                        <p className="max-w-[900px] text-xl font-medium">
-                            The wait is almost over. The ultimate inter-faculty
+                    <SectionHeader
+                        title="Countdown to Rivalry"
+                        description="The wait is almost over. The ultimate inter-faculty
                             gaming battle begins soon. Stay sharp, gather your
-                            squad, and get ready to enter the arena.
-                        </p>
-                    </div>
+                            squad, and get ready to enter the arena."
+                    />
 
-                    {/* Countdown */}
                     <div className="flex flex-col items-center gap-6 text-center md:gap-8">
                         <h2 className="text-4xl font-bold uppercase">
                             Time left until the battle begins
                         </h2>
 
-                        <div className="flex flex-wrap justify-center gap-6 md:gap-16">
+                        <div className="grid grid-cols-4 gap-6 max-[400px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 md:gap-16">
                             {['days', 'hours', 'minutes', 'seconds'].map(
                                 (unit) => (
                                     <div
                                         key={unit}
                                         className="flex flex-col items-center"
                                     >
-                                        <p className="text-primary-red text-[120px] font-bold">
+                                        <p className="text-primary-red text-6xl font-bold sm:text-[120px]">
                                             {formatNumber(
                                                 timeLeft[
                                                     unit as keyof typeof timeLeft
                                                 ]
                                             )}
                                         </p>
-                                        <p className="text-primary-red text-2xl font-bold uppercase">
+                                        <p className="text-primary-red text-lg font-bold uppercase sm:text-2xl">
                                             {unit}
                                         </p>
                                     </div>
@@ -91,8 +86,7 @@ const CountDownSection = ({ targetDate }: CountdownProps) => {
                         </div>
                     </div>
 
-                    {/* Competition Date */}
-                    <p className="max-w-[820px] text-center text-2xl font-medium">
+                    <p className="max-w-[820px] text-center text-lg font-medium sm:text-2xl">
                         Competition Starts:{' '}
                         {new Date(targetDate).toLocaleDateString(undefined, {
                             day: 'numeric',

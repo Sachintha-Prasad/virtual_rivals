@@ -1,8 +1,16 @@
 import React from 'react'
 import LandingPageLayout from '../../components/layouts/landing-page-layout'
 import Image from 'next/image'
+import HighlightCard from '@/components/landing/about-us-section/hightlight-cart'
 
-const eventHighlights = [
+type HighlightDataType = {
+    id: number
+    title: string
+    description: string
+    icon: string
+}
+
+const eventHighlights: HighlightDataType[] = [
     {
         id: 1,
         title: 'Ultimate Bragging Rights',
@@ -37,71 +45,57 @@ const AboutUsSection = () => {
     return (
         <section id="about-us" className="bg-background">
             <LandingPageLayout>
-                <div className="flex gap-12">
-                    <Image
-                        src={'/images/about-bg.svg'}
-                        alt="about us image"
-                        width={432}
-                        height={175}
-                        className="w-full"
-                    />
+                <div className="grid gap-8 sm:grid-cols-3 lg:gap-16">
+                    <div className="flex-shrink-0 xl:row-span-2">
+                        <Image
+                            src="/images/about-bg.svg"
+                            alt="about us image"
+                            width={432}
+                            height={175}
+                            className="h-auto w-full"
+                        />
+                    </div>
 
-                    <div className="flex flex-col gap-16">
-                        <div className="flex flex-col gap-8">
-                            <h2 className="text-4xl font-bold">
-                                Where Skill Meets Strategy
-                            </h2>
-                            <div className="flex w-full justify-between gap-[96px]">
-                                <p className="flex flex-1 flex-col space-y-6 text-justify text-lg font-medium">
-                                    <span>
-                                        Virtual Rival is an electrifying
-                                        inter-faculty eSports competition hosted
-                                        by the Society of Computer Sciences,
-                                        Sabaragamuwa University of Sri Lanka.
-                                    </span>
-                                    <span>
-                                        This annual gaming showdown is more than
-                                        just a battle. It’s a celebration of
-                                        teamwork, strategy, and the competitive
-                                        spirit of our university. Whether you’re
-                                        a casual challenger or a competitive
-                                        pro, Virtual Rival is your chance to
-                                        rise above, represent your faculty, and
-                                        make history.
-                                    </span>
-                                    <span>
-                                        Organized with professionalism and
-                                        fairness, Virtual Rival connects
-                                        faculties, builds community, and crowns
-                                        the true champions of our university.
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
+                    <div className="flex flex-col gap-8 sm:col-span-2">
+                        <h2 className="text-3xl font-bold md:text-4xl">
+                            Where Skill Meets Strategy
+                        </h2>
+                        <p className="space-y-6 text-justify text-base leading-relaxed font-medium md:text-lg">
+                            <span>
+                                Virtual Rival is an electrifying inter-faculty
+                                eSports competition hosted by the Society of
+                                Computer Sciences, Sabaragamuwa University of
+                                Sri Lanka.
+                            </span>
+                            <span>
+                                This annual gaming showdown is more than just a
+                                battle. It’s a celebration of teamwork,
+                                strategy, and the competitive spirit of our
+                                university. Whether you’re a casual challenger
+                                or a competitive pro, Virtual Rival is your
+                                chance to rise above, represent your faculty,
+                                and make history.
+                            </span>
+                            <span>
+                                Organized with professionalism and fairness,
+                                Virtual Rival connects faculties, builds
+                                community, and crowns the true champions of our
+                                university.
+                            </span>
+                        </p>
+                    </div>
 
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-                            {eventHighlights.map((data) => (
-                                <div
-                                    key={data.id}
-                                    className="flex flex-col gap-8"
-                                >
-                                    <Image
-                                        src={data.icon}
-                                        alt={data.title}
-                                        width={50}
-                                        height={50}
-                                    />
-                                    <div className="flex flex-col items-start gap-2">
-                                        <h3 className="text-[16px] font-bold uppercase">
-                                            {data.title}
-                                        </h3>
-                                        <p className="text-[12px]">
-                                            {data.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-1 gap-8 min-[400px]:grid-cols-2 sm:col-span-3 lg:grid-cols-4 xl:col-span-2">
+                        {eventHighlights.map(
+                            ({ id, title, description, icon }) => (
+                                <HighlightCard
+                                    key={id}
+                                    title={title}
+                                    description={description}
+                                    icon={icon}
+                                />
+                            )
+                        )}
                     </div>
                 </div>
             </LandingPageLayout>

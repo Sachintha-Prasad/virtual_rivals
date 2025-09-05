@@ -2,6 +2,7 @@ import React from 'react'
 import LandingPageLayout from '../../components/layouts/landing-page-layout'
 import Image from 'next/image'
 import CustomCursor from '@/components/animation/custom-cursor'
+import PrimaryButton from '@/components/common/primary-button'
 
 const HeroSection = () => {
     return (
@@ -42,18 +43,13 @@ const HeroSection = () => {
                         </p>
                     </div>
 
-                    <a
+                    <PrimaryButton
+                        text="join the rivaly"
                         href="#countdown"
-                        className="bg-primary-red flex cursor-pointer gap-3 rounded-full p-4 text-[14px] font-semibold tracking-widest uppercase shadow-[0px_0px_48px_0px_#D10225BF] backdrop-blur-[17.4px]"
-                    >
-                        <Image
-                            src={'/icons/game-console-icon.svg'}
-                            alt="console icon"
-                            width={30}
-                            height={18}
-                        />
-                        Join the rivalry
-                    </a>
+                        size="large"
+                        isGlow={true}
+                        icon_path={'/icons/game-console-icon.svg'}
+                    />
                 </div>
             </LandingPageLayout>
         </section>

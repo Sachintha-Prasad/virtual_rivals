@@ -10,6 +10,7 @@ const images = [
     '/games-images/nfs-run-img.svg',
     '/games-images/mk-img.svg',
     '/games-images/blur-img.svg',
+    '/games-images/hill-climb-img.svg',
 ]
 
 const GamesSection = () => {
@@ -41,12 +42,15 @@ const GamesSection = () => {
     }, [])
 
     return (
-        <section id="games" className="bg-background w-full overflow-hidden">
+        <section
+            id="games"
+            className="bg-background w-full overflow-hidden py-[80px]"
+        >
             <div ref={containerRef} className="flex gap-3 overflow-hidden py-3">
                 {images.map((src, i) => (
                     <div
                         key={i}
-                        className="h-[60vh] w-full max-w-[360px] flex-shrink-0 overflow-hidden rounded-xl"
+                        className="size-[410px] w-full max-w-[410px] flex-shrink-0 overflow-hidden rounded-xl"
                     >
                         <Image
                             src={src}
