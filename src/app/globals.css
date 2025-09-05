@@ -60,11 +60,6 @@ body {
     font-family: inherit;
 }
 
-a,
-button {
-    cursor: none;
-}
-
 .text-stroke {
     color: white;
     -webkit-text-stroke: 2px transparent;
@@ -79,4 +74,11 @@ button {
 
 .text-stroke-lg {
     -webkit-text-stroke: 4px transparent !important;
+}
+
+@media (min-width: 1024px) {
+    a,
+    button {
+        cursor: none;
+    }
 }

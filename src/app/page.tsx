@@ -7,15 +7,17 @@ import GamesSection from './landing/games-section'
 import RulesSection from './landing/rules-section'
 import PriceSection from './landing/price-section'
 import TrailerSection from './landing/trailer-section'
+import CustomCursor from '@/components/animation/custom-cursor'
 
 const LandingPage = () => {
     return (
-        <div className="cursor-none">
+        <div className="lg:cursor-none">
             <div>
                 <Header />
             </div>
 
             <main>
+                <CustomCursor />
                 <HeroSection />
                 <AboutUsSection />
                 <CountDownSection targetDate={'2025-09-17'} />

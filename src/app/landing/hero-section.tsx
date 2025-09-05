@@ -29,8 +29,6 @@ const HeroSection = () => {
                 className="absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2"
             />
 
-            <CustomCursor />
-
             <LandingPageLayout>
                 <div className="flex min-h-[80vh] w-full flex-col items-center justify-center gap-6">
                     <div className="flex flex-col items-center gap-3 text-center">
