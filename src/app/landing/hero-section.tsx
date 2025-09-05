@@ -1,7 +1,6 @@
 import React from 'react'
 import LandingPageLayout from '../../components/layouts/landing-page-layout'
 import Image from 'next/image'
-import CustomCursor from '@/components/animation/custom-cursor'
 import PrimaryButton from '@/components/common/primary-button'
 
 const HeroSection = () => {

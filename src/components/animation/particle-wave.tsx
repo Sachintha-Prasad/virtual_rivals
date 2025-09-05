@@ -29,7 +29,9 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({
     const time = useRef<number>(0)
 
     useEffect(() => {
-        if (!containerRef.current) return
+        const container = containerRef.current
+
+        if (container) return
 
         let scene: THREE.Scene
         let camera: THREE.PerspectiveCamera
@@ -172,6 +174,7 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({
                 cancelAnimationFrame(animationFrameId.current)
             }
             if (containerRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
                 containerRef.current.removeChild(renderer.domElement)
             }
             renderer.dispose()
