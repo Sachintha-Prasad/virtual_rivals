@@ -10,6 +10,7 @@ import TrailerSection from './landing/trailer-section'
 import CustomCursor from '@/components/animation/custom-cursor'
 import Footer from '@/components/common/footer'
 import ContactSection from './landing/contact-section'
+import TeamRegistrationSection from './landing/team-registration-section'
 
 const LandingPage = () => {
     return (
@@ -27,6 +28,7 @@ const LandingPage = () => {
                 <RulesSection />
                 <TrailerSection />
                 <PriceSection />
+                <TeamRegistrationSection />
                 <ContactSection />
                 <Footer />
             </main>
