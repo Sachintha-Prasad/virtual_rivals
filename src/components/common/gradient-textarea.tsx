@@ -13,7 +13,7 @@ const GradientTextarea: React.FC<TextareaProps> = ({
 }) => {
     return (
         <div className="group relative flex rounded-lg pl-12">
-            <div className="from-primary-red/40 to-primary-red/60 group-focus-within:from-primary-red/60 group-focus-within:to-primary-red/30 absolute inset-0 rounded-lg border border-transparent bg-gradient-to-r bg-[length:200%_200%] bg-[position:left_center] transition-all duration-700 ease-in-out group-focus-within:bg-[position:right_center]"></div>
+            <div className="from-primary-red/50 group-focus-within:from-primary-red/50 group-focus-within:to-primary-red/100 absolute inset-0 rounded-lg border border-none border-transparent bg-gradient-to-r to-transparent bg-[length:200%_200%] transition-all duration-700 ease-in-out"></div>
 
             <div className="absolute inset-0.5 rounded-lg bg-[#15151C]"></div>
 

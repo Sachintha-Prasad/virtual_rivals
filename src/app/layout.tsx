@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Chakra_Petch } from 'next/font/google'
 import './globals.css'
+import Preloader from '@/components/common/preloader'
 
 const chakraPetch = Chakra_Petch({
     subsets: ['latin'],
@@ -22,7 +23,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en" className={`${chakraPetch.className}`}>
-            <body>{children}</body>
+            <body>
+                <Preloader />
+                {children}
+            </body>
         </html>
     )
 }
