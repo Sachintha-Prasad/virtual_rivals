@@ -55,7 +55,7 @@ const GameDropdown = ({ selected, onSelect }: GameDropdownProps) => {
                 />
 
                 <p className="relative z-10 w-full pl-6 text-lg text-white">
-                    {selectedGame ? selectedGame.label : 'Select the Game'}
+                    {selectedGame ? selectedGame.label : 'Select the Game*'}
                 </p>
 
                 <Image
