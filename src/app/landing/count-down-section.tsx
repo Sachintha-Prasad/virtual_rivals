@@ -68,7 +68,7 @@ const CountDownSection = ({ targetDate }: CountdownProps) => {
                                 (unit) => (
                                     <div
                                         key={unit}
-                                        className="flex flex-col items-center"
+                                        className="flex flex-col items-center sm:min-w-[160px]"
                                     >
                                         <p className="text-primary-red text-6xl font-bold sm:text-[120px]">
                                             {formatNumber(

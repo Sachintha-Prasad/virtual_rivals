@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Chakra_Petch } from 'next/font/google'
 import './globals.css'
 import Preloader from '@/components/common/preloader'
+import { Toaster } from 'react-hot-toast'
 
 const chakraPetch = Chakra_Petch({
     subsets: ['latin'],
@@ -26,6 +27,7 @@ export default function RootLayout({
             <body>
                 <Preloader />
                 {children}
+                <Toaster position="top-center" />
             </body>
         </html>
     )

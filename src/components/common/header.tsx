@@ -146,7 +146,11 @@ const Header = () => {
 
                 {/* Desktop CTA */}
                 <div className="hidden lg:block">
-                    <PrimaryButton text="register now" size="small" />
+                    <PrimaryButton
+                        text="register now"
+                        size="small"
+                        href="#register"
+                    />
                 </div>
 
                 {/* Mobile Menu Toggle */}
