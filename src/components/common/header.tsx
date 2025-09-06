@@ -85,7 +85,6 @@ const Header = () => {
     return (
         <HeaderLayout>
             <div className="flex w-full items-center justify-between">
-                {/* Logo */}
                 <Image
                     src="/logo/vr-logo.svg"
                     alt="vr-logo"
