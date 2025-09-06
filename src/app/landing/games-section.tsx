@@ -4,13 +4,13 @@ import Image from 'next/image'
 import React, { useRef, useEffect } from 'react'
 
 const images = [
-    '/games-images/cod-img.svg',
-    '/games-images/pubg-img.svg',
-    '/games-images/mw-img.svg',
-    '/games-images/nfs-run-img.svg',
-    '/games-images/mk-img.svg',
-    '/games-images/blur-img.svg',
-    '/games-images/hill-climb-img.svg',
+    '/games-images/cod-img.jpg',
+    '/games-images/pubg-img.jpg',
+    '/games-images/mw-img.jpg',
+    '/games-images/nfs-run-img.jpg',
+    '/games-images/mk-img.jpg',
+    '/games-images/blur-img.jpg',
+    '/games-images/hill-climb-img.jpg',
 ]
 
 const GamesSection = () => {
@@ -55,8 +55,9 @@ const GamesSection = () => {
                         <Image
                             src={src}
                             alt={`game-${i}`}
-                            width={360}
-                            height={200}
+                            width={3000}
+                            height={3000}
+                            quality={100}
                             className="pointer-events-none h-full w-full object-cover"
                         />
                     </div>
