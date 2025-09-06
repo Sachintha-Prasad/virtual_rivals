@@ -192,7 +192,11 @@ const Header = () => {
                                     {item.label}
                                 </motion.button>
                             ))}
-                            <PrimaryButton text="register now" size="base" />
+                            <PrimaryButton
+                                text="register now"
+                                size="base"
+                                href="#register"
+                            />
                         </motion.div>
                     )}
                 </AnimatePresence>
