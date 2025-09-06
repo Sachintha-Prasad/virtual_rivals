@@ -1,12 +1,12 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 
 type TimelineCardProps = {
     title: string
     date: string
-    icon_src: string
+    iconSrc: string | StaticImageData
 }
 
-const TimelineCard = ({ title, date, icon_src }: TimelineCardProps) => {
+const TimelineCard = ({ title, date, iconSrc }: TimelineCardProps) => {
     return (
         <div className="group relative h-[273px] w-auto overflow-hidden rounded-lg bg-[#15151C] p-[20px]">
             {/* Gradient Border Animation */}
@@ -17,7 +17,7 @@ const TimelineCard = ({ title, date, icon_src }: TimelineCardProps) => {
 
             {/* Content */}
             <div className="relative z-10">
-                <Image src={icon_src} alt={title} width={50} height={50} />
+                <Image src={iconSrc} alt={title} width={50} height={50} />
                 <div className="mt-24">
                     <h3 className="mb-2 font-bold uppercase">{title}</h3>
                     <p>{date}</p>

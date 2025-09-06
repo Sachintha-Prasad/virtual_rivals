@@ -8,29 +8,29 @@ import TimelineCard from '@/components/landing/pricing-section/timeline-card'
 type TimelineDataType = {
     title: string
     date: string
-    icon_src: string
+    iconSrc: string
 }
 
 const timelineData: TimelineDataType[] = [
     {
         title: 'Registration Open',
         date: '2025-08-15',
-        icon_src: '/images/open.png',
+        iconSrc: '/images/open.png',
     },
     {
         title: 'Registration Close',
         date: '2025-08-30',
-        icon_src: '/images/delete_user.png',
+        iconSrc: '/images/delete_user.png',
     },
     {
         title: 'Team Draw & Match Schedule',
         date: '2025-09-05',
-        icon_src: '/images/billboard.png',
+        iconSrc: '/images/billboard.png',
     },
     {
         title: 'Virtual Rival Event Day',
         date: '2025-09-10',
-        icon_src: '/images/calendar.png',
+        iconSrc: '/images/calendar.png',
     },
 ]
 
@@ -63,7 +63,7 @@ const PriceSection = () => {
                                 key={index}
                                 title={data.title}
                                 date={data.date}
-                                icon_src={data.icon_src}
+                                iconSrc={data.iconSrc}
                             />
                         ))}
                     </div>

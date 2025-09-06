@@ -16,7 +16,7 @@ const Footer = () => {
                                 height={32}
                             />
                         </div>
-                        <p className="text-justify sm:max-w-[400px] sm:text-left">
+                        <p className="text-justify sm:max-w-[600px] sm:text-left">
                             Virtual Rival is an electrifying inter-faculty
                             eSports competition hosted by the Society of
                             Computer Sciences, Sabaragamuwa University of Sri
@@ -33,7 +33,7 @@ const Footer = () => {
                                 height={48}
                             />
                         </div>
-                        <p className="text-justify sm:max-w-[400px] sm:text-right">
+                        <p className="text-justify sm:max-w-[600px] sm:text-right">
                             Virtual Rival is the ultimate clash of faculties,
                             bringing gamers together in a battle of skill and
                             pride. It’s more than competition — it’s teamwork,

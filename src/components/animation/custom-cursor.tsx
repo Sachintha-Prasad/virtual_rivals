@@ -16,7 +16,7 @@ const CustomCursor = () => {
         const hoverEnd = () => setIsHovering(false)
 
         const hoverTargets = document.querySelectorAll(
-            'a, button, [data-cursor="hover"]'
+            'a, button, input, textarea, [data-cursor="hover"]'
         )
         hoverTargets.forEach((el) => {
             el.addEventListener('mouseenter', hoverStart)

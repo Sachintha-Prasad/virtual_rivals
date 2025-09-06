@@ -78,6 +78,8 @@ body {
 
 @media (min-width: 1024px) {
     a,
+    input,
+    textarea,
     button {
         cursor: none;
     }

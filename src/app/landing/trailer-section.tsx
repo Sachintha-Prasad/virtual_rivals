@@ -8,7 +8,7 @@ const TrailerSection = () => {
             <div className=""></div>
 
             <LandingPageLayout>
-                <div></div>
+                <div>Trailer section</div>
             </LandingPageLayout>
         </section>
     )

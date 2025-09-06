@@ -1,31 +1,31 @@
 'use client'
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 
-type PrimaryButtonProps = {
+type PrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     text: string
     href?: string
-    icon_path?: string
+    iconSrc?: string | StaticImageData
     size?: 'small' | 'base' | 'large'
-    onClick?: () => void
     isGlow?: boolean
+    onClick?: () => void
 }
 
 const PrimaryButton = ({
     text,
     href,
-    icon_path,
-    onClick,
+    iconSrc,
     size = 'base',
-    isGlow = false,
+    isGlow,
+    onClick,
 }: PrimaryButtonProps) => {
     return (
         <a
             href={href}
             onClick={onClick}
             className={cn(
-                'bg-primary-red relative flex cursor-pointer items-center gap-3 px-4 font-semibold tracking-widest uppercase',
+                'bg-primary-red relative flex w-fit cursor-pointer items-center gap-3 px-4 font-semibold tracking-widest uppercase',
                 size === 'small' && 'py-2 text-sm',
                 size === 'base' && 'py-3 text-sm sm:text-lg',
                 size === 'large' && 'py-4 text-sm sm:text-2xl',
@@ -54,9 +54,9 @@ const PrimaryButton = ({
                 }}
             />
 
-            {icon_path && (
+            {iconSrc && (
                 <Image
-                    src={icon_path}
+                    src={iconSrc}
                     alt="console icon"
                     width={42}
                     height={18}

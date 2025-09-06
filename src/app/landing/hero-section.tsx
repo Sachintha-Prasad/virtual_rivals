@@ -45,7 +45,7 @@ const HeroSection = () => {
                         href="#countdown"
                         size="large"
                         isGlow={true}
-                        icon_path={'/icons/game-console-icon.svg'}
+                        iconSrc={'/icons/game-console-icon.svg'}
                     />
                 </div>
             </LandingPageLayout>

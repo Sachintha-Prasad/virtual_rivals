@@ -15,7 +15,7 @@ const RulesSection = () => {
                         title="Play Fair. Play Hard."
                         description="Every rivalry is built on fair play. To keep the
                         competition exciting and equal for everyone, all players
-                        must follow the official rules and guidelines. From team
+                        must follow the official rules and guidelines. From team0.
                         eligibility to gameplay conduct, these regulations
                         ensure a smooth, professional, and enjoyable experience
                         for all faculties."
@@ -24,7 +24,7 @@ const RulesSection = () => {
                     <PrimaryButton
                         text="join the rivaly"
                         href="#countdown"
-                        icon_path={'/icons/rules-icon.svg'}
+                        iconSrc={'/icons/rules-icon.svg'}
                     />
                 </div>
             </LandingPageLayout>

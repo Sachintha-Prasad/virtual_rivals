@@ -9,6 +9,7 @@ import PriceSection from './landing/price-section'
 import TrailerSection from './landing/trailer-section'
 import CustomCursor from '@/components/animation/custom-cursor'
 import Footer from '@/components/common/footer'
+import ContactSection from './landing/contact-section'
 
 const LandingPage = () => {
     return (
@@ -26,6 +27,7 @@ const LandingPage = () => {
                 <RulesSection />
                 <TrailerSection />
                 <PriceSection />
+                <ContactSection />
                 <Footer />
             </main>
         </div>

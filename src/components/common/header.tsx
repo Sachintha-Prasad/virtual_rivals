@@ -51,7 +51,6 @@ const Header = () => {
             },
             {
                 threshold: 0.5,
-                rootMargin: '0px 0px -20% 0px',
             }
         )
 
@@ -70,13 +69,22 @@ const Header = () => {
     }, [])
 
     const handleScrollTo = (href: string, label: string) => {
-        const target = document.querySelector(href)
+        const target = document.querySelector(href) as HTMLElement
         if (target) {
             setIsScrolling(true)
             setActive(label)
             history.replaceState(null, '', href)
 
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            const headerOffset = 56
+            const elementPosition =
+                target.getBoundingClientRect().top + window.scrollY
+            const offsetPosition = elementPosition - headerOffset
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+            })
+
             setTimeout(() => setIsScrolling(false), 700)
         }
         setIsMenuOpen(false)
