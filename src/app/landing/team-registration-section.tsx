@@ -69,40 +69,37 @@ const TeamRegistrationSection = () => {
         e.preventDefault()
 
         if (!validateForm()) return
-
         setLoading(true)
+
         try {
-            const payload = {
-                game: selectedGame,
+            const params = new URLSearchParams({
+                selectedGame,
                 teamName,
                 email,
                 contactNumber,
-                players: players.map((name) => ({ name })),
-            }
-
-            const res = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+                players: JSON.stringify(players),
             })
 
-            const data = await res.json()
+            const res = await fetch(
+                `https://script.google.com/macros/s/AKfycbyL11F5kQikrGW0UVw2ZCVVcCdfyDNuiUksxCoQd-SWLXyATXe-aBNqsZb1TQweesoz3g/exec?${params.toString()}`
+            )
 
-            if (data.success) {
-                toast.success('Team registered successfully! 🎉')
-                // reset form
+            const result = await res.json()
+
+            if (result.success) {
+                toast.success('Team registered successfully!')
+                setSelectedGame('')
+                setPlayerCount(0)
                 setTeamName('')
                 setEmail('')
                 setContactNumber('')
-                setPlayers(Array(playerCount).fill(''))
-                setSelectedGame('')
-                setPlayerCount(0)
+                setPlayers([])
             } else {
-                toast.error(data.message || 'Failed to register team ❌')
+                toast.error(result.message || 'Something went wrong')
             }
-        } catch (err) {
-            console.error(err)
-            toast.error('Something went wrong. Please try again.')
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
+            toast.error('Failed to register team')
         } finally {
             setLoading(false)
         }
@@ -192,7 +189,7 @@ const TeamRegistrationSection = () => {
                         <div className="mt-6">
                             <PrimaryButton
                                 text="register & rival"
-                                loadingText="registering"
+                                loadingText="registering..."
                                 iconSrc={'/icons/fire-icon.svg'}
                                 type="submit"
                                 loading={loading}
