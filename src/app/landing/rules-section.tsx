@@ -22,9 +22,10 @@ const RulesSection = () => {
                     />
 
                     <PrimaryButton
-                        text="join the rivaly"
-                        href="#countdown"
-                        iconSrc={'/icons/rules-icon.svg'}
+                        text="game rules"
+                        loadingText="downloading..."
+                        downloadUrl="/pdfs/vr-game-rules.pdf"
+                        iconSrc="/icons/rules-icon.svg"
                     />
                 </div>
             </LandingPageLayout>

@@ -126,7 +126,7 @@ const ContactSection = () => {
                                 />
                             </div>
 
-                            <div className="mt-3 ml-6">
+                            <div className="mt-3">
                                 <PrimaryButton
                                     text="Submit Now"
                                     loadingText="Submiting..."

@@ -14,22 +14,22 @@ type TimelineDataType = {
 const timelineData: TimelineDataType[] = [
     {
         title: 'Registration Open',
-        date: '2025-08-15',
+        date: '2025-09-08',
         iconSrc: '/images/open.png',
     },
     {
         title: 'Registration Close',
-        date: '2025-08-30',
+        date: '2025-09-16',
         iconSrc: '/images/delete_user.png',
     },
     {
         title: 'Team Draw & Match Schedule',
-        date: '2025-09-05',
+        date: '2025-09-17',
         iconSrc: '/images/billboard.png',
     },
     {
         title: 'Virtual Rival Event Day',
-        date: '2025-09-10',
+        date: '2025-09-19',
         iconSrc: '/images/calendar.png',
     },
 ]

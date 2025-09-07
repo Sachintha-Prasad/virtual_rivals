@@ -7,6 +7,7 @@ type PrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     text: string
     loadingText?: string
     href?: string
+    downloadUrl?: string
     iconSrc?: string | StaticImageData
     size?: 'small' | 'base' | 'large'
     isGlow?: boolean
@@ -18,6 +19,7 @@ const PrimaryButton = ({
     text,
     loadingText,
     href,
+    downloadUrl,
     iconSrc,
     size = 'base',
     isGlow,
@@ -46,6 +48,24 @@ const PrimaryButton = ({
             {loading ? loadingText : text}
         </>
     )
+
+    const handleDownload = async () => {
+        if (!downloadUrl) return
+        try {
+            const response = await fetch(downloadUrl)
+            const blob = await response.blob()
+            const url = window.URL.createObjectURL(blob)
+            const link = document.createElement('a')
+            link.href = url
+            link.download = downloadUrl.split('/').pop() || 'file.pdf'
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
+            window.URL.revokeObjectURL(url)
+        } catch (error) {
+            console.error('Download failed:', error)
+        }
+    }
 
     // Define polygon clip paths for different sizes
     const clipPaths: Record<string, string> = {
@@ -80,7 +100,9 @@ const PrimaryButton = ({
 
     return (
         <button
-            onClick={loading ? undefined : onClick}
+            onClick={
+                loading ? undefined : downloadUrl ? handleDownload : onClick
+            }
             disabled={loading}
             {...props}
             className={classes}

@@ -189,7 +189,7 @@ const TeamRegistrationSection = () => {
                         )}
 
                         {/* Submit Button */}
-                        <div className="mt-6 ml-6">
+                        <div className="mt-6">
                             <PrimaryButton
                                 text="register & rival"
                                 loadingText="registering"

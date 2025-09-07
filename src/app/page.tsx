@@ -23,7 +23,7 @@ const LandingPage = () => {
                 <CustomCursor />
                 <HeroSection />
                 <AboutUsSection />
-                <CountDownSection targetDate={'2025-09-17'} />
+                <CountDownSection targetDate={'2025-09-19'} />
                 <GamesSection />
                 <RulesSection />
                 <TrailerSection />
