@@ -59,7 +59,7 @@ const CountDownSection = ({ targetDate }: CountdownProps) => {
                     />
 
                     <div className="flex flex-col items-center gap-6 text-center md:gap-8">
-                        <h2 className="text-4xl font-bold uppercase">
+                        <h2 className="text-2xl font-bold uppercase lg:text-4xl">
                             Time left until the battle begins
                         </h2>
 

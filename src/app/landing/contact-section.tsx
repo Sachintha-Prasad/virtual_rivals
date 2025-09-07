@@ -87,8 +87,8 @@ const ContactSection = () => {
                     </div>
 
                     <div className="flex w-full flex-1 flex-col gap-6">
-                        <div>
-                            <h2 className="text-4xl font-bold tracking-widest uppercase">
+                        <div className="flex flex-col gap-4">
+                            <h2 className="text-3xl font-bold tracking-widest uppercase lg:text-4xl">
                                 Got Questions?
                             </h2>
                             <p>

@@ -56,7 +56,7 @@ const AboutUsSection = () => {
                         />
                     </div>
 
-                    <div className="flex flex-col gap-8 sm:col-span-2">
+                    <div className="flex flex-col gap-4 sm:col-span-2">
                         <h2 className="text-3xl font-bold md:text-4xl">
                             Where Skill Meets Strategy
                         </h2>

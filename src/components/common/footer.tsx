@@ -44,7 +44,7 @@ const Footer = () => {
 
                 <div className="flex flex-col gap-4">
                     <div className="h-0.5 w-full rounded-full bg-white"></div>
-                    <p className="text-center text-2xl">
+                    <p className="text-center lg:text-2xl">
                         contact@virtualrival.lk
                     </p>
                     <div className="h-0.5 w-full rounded-full bg-white"></div>

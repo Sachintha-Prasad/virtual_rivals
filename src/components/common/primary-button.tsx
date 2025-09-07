@@ -58,7 +58,7 @@ const PrimaryButton = ({
                         width={42}
                         height={18}
                         className={cn(
-                            size === 'base' && 'max-w-[24px]',
+                            size === 'base' && 'max-w-[18px] lg:max-w-[24px]',
                             size === 'large' && 'max-w-[24px] sm:max-w-[42px]'
                         )}
                     />
@@ -76,8 +76,8 @@ const PrimaryButton = ({
                 className={cn(
                     'bg-primary-red relative flex w-fit cursor-pointer items-center gap-3 px-4 font-semibold tracking-widest uppercase',
                     size === 'small' && 'py-2 text-sm',
-                    size === 'base' && 'py-3 text-sm sm:text-lg',
-                    size === 'large' && 'py-4 text-sm sm:text-2xl',
+                    size === 'base' && 'py-3 text-sm lg:text-lg',
+                    size === 'large' && 'py-4 text-lg sm:text-xl lg:text-2xl',
                     isGlow &&
                         'shadow-[0px_0px_48px_0px_#D10225BF] backdrop-blur-[17.4px]',
                     loading && 'pointer-events-none opacity-70'

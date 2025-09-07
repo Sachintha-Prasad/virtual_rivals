@@ -22,12 +22,12 @@ const GradientTextarea: React.FC<TextareaProps> = ({
                 alt={placeholder}
                 width={24}
                 height={24}
-                className="absolute top-[34px] left-4 z-10 -translate-y-1/2"
+                className="absolute top-[24px] left-4 z-10 max-w-[18px] -translate-y-1/2 lg:top-[34px] lg:max-w-[24px]"
             />
 
             <textarea
                 placeholder={placeholder}
-                className="relative z-10 w-full bg-transparent px-6 py-5 text-lg text-white outline-none"
+                className="relative z-10 w-full bg-transparent px-6 py-3 text-white outline-none lg:py-5 lg:text-lg"
                 {...rest}
             />
         </div>

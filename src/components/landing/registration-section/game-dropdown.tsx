@@ -40,7 +40,7 @@ const GameDropdown = ({ selected, onSelect }: GameDropdownProps) => {
         <div ref={dropdownRef} className="relative w-full">
             {/* Wrapper with gradient border */}
             <div
-                className="group relative flex cursor-pointer items-center rounded-lg py-4 pr-6 pl-12"
+                className="group relative flex cursor-pointer items-center rounded-lg py-3 pr-6 pl-12 lg:py-5"
                 onClick={() => setOpen((prev) => !prev)}
             >
                 {/* Gradient Border */}
@@ -51,7 +51,7 @@ const GameDropdown = ({ selected, onSelect }: GameDropdownProps) => {
                     alt="game console icon"
                     width={28}
                     height={24}
-                    className="absolute top-1/2 left-4 z-10 -translate-y-1/2"
+                    className="absolute top-1/2 left-4 z-10 max-w-[20px] -translate-y-1/2 lg:max-w-[28px]"
                 />
 
                 <p className="relative z-10 w-full pl-6 text-lg text-white">
@@ -63,7 +63,7 @@ const GameDropdown = ({ selected, onSelect }: GameDropdownProps) => {
                     alt="dropdown arrow"
                     width={18}
                     height={24}
-                    className={`absolute top-1/2 right-4 z-10 -translate-y-1/2 transition-transform duration-300 ${
+                    className={`absolute top-1/2 right-4 z-10 max-w-[18px] -translate-y-1/2 transition-transform duration-300 lg:max-w-[24px] ${
                         open ? 'rotate-0' : 'rotate-180'
                     }`}
                 />
