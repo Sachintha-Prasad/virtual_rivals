@@ -131,6 +131,7 @@ const Header = () => {
                                         stiffness: 300,
                                         damping: 30,
                                     }}
+                                    style={{ width: 30, height: 32 }}
                                 >
                                     <Image
                                         src="/icons/nav-indicator.svg"

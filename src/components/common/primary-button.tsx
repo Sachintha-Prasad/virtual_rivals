@@ -27,27 +27,6 @@ const PrimaryButton = ({
 }: PrimaryButtonProps) => {
     const content = (
         <>
-            {/* Left Polygon */}
-            <div
-                className="bg-primary-red absolute top-0 left-0 h-full w-6 -translate-x-full"
-                style={{
-                    clipPath:
-                        size === 'small'
-                            ? 'polygon(25% 50%, 100% 0, 100% 100%)'
-                            : 'polygon(0% 50%, 100% 0, 100% 100%)',
-                }}
-            />
-            {/* Right Polygon */}
-            <div
-                className="bg-primary-red absolute top-0 right-0 h-full w-6 translate-x-full"
-                style={{
-                    clipPath:
-                        size === 'small'
-                            ? 'polygon(75% 50%, 0 0, 0 100%)'
-                            : 'polygon(100% 50%, 0 0, 0 100%)',
-                }}
-            />
-
             {loading ? (
                 <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
             ) : (
@@ -68,20 +47,31 @@ const PrimaryButton = ({
         </>
     )
 
+    // Define polygon clip paths for different sizes
+    const clipPaths: Record<string, string> = {
+        small: 'polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%)',
+        base: 'polygon(20px 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 20px 100%, 0 50%)',
+        large: 'polygon(25px 0, calc(100% - 25px) 0, 100% 50%, calc(100% - 25px) 100%, 25px 100%, 0 50%)',
+    }
+    const classes = cn(
+        'relative flex w-fit items-center gap-3 px-6 font-semibold tracking-widest uppercase text-white',
+        size === 'small' && 'py-2 text-sm',
+        size === 'base' && 'py-3 text-sm sm:text-lg',
+        size === 'large' && 'py-4 text-lg sm:text-2xl',
+        isGlow && 'shadow-[0_0_25px_5px_rgba(209,2,37,0.9)]',
+        loading && 'cursor-not-allowed opacity-70'
+    )
+
     if (href) {
         return (
             <a
                 href={href}
                 onClick={loading ? () => {} : onClick}
-                className={cn(
-                    'bg-primary-red relative flex w-fit cursor-pointer items-center gap-3 px-4 font-semibold tracking-widest uppercase',
-                    size === 'small' && 'py-2 text-sm',
-                    size === 'base' && 'py-3 text-sm lg:text-lg',
-                    size === 'large' && 'py-4 text-lg sm:text-xl lg:text-2xl',
-                    isGlow &&
-                        'shadow-[0px_0px_48px_0px_#D10225BF] backdrop-blur-[17.4px]',
-                    loading && 'pointer-events-none opacity-70'
-                )}
+                className={classes}
+                style={{
+                    backgroundColor: '#D10225',
+                    clipPath: clipPaths[size],
+                }}
             >
                 {content}
             </a>
@@ -93,15 +83,11 @@ const PrimaryButton = ({
             onClick={loading ? undefined : onClick}
             disabled={loading}
             {...props}
-            className={cn(
-                'bg-primary-red relative flex w-fit items-center gap-3 px-4 font-semibold tracking-widest uppercase',
-                size === 'small' && 'py-2 text-sm',
-                size === 'base' && 'py-3 text-sm sm:text-lg',
-                size === 'large' && 'py-4 text-sm sm:text-2xl',
-                isGlow &&
-                    'shadow-[0px_0px_48px_0px_#D10225BF] backdrop-blur-[17.4px]',
-                loading && 'cursor-not-allowed opacity-70'
-            )}
+            className={classes}
+            style={{
+                backgroundColor: '#D10225',
+                clipPath: clipPaths[size],
+            }}
         >
             {content}
         </button>
