@@ -9,7 +9,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const GradientInput = ({ placeholder, iconSrc, ...rest }: InputProps) => {
     return (
-        <div className="group relative flex rounded-lg pl-12">
+        <div className="group relative flex rounded-lg pl-6 lg:pl-8">
             <div className="from-primary-red/50 group-focus-within:from-primary-red/50 group-focus-within:to-primary-red/100 absolute inset-0 rounded-lg border border-none border-transparent bg-gradient-to-r to-transparent bg-[length:200%_200%] transition-all duration-700 ease-in-out"></div>
 
             <div className="absolute inset-0.5 rounded-lg bg-[#15151C]"></div>

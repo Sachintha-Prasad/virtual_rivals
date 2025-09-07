@@ -40,7 +40,7 @@ const GameDropdown = ({ selected, onSelect }: GameDropdownProps) => {
         <div ref={dropdownRef} className="relative w-full">
             {/* Wrapper with gradient border */}
             <div
-                className="group relative flex cursor-pointer items-center rounded-lg py-3 pr-6 pl-12 lg:py-5"
+                className="group relative flex cursor-pointer items-center rounded-lg py-3 pr-6 pl-6 lg:py-5 lg:pl-8"
                 onClick={() => setOpen((prev) => !prev)}
             >
                 {/* Gradient Border */}
@@ -51,10 +51,10 @@ const GameDropdown = ({ selected, onSelect }: GameDropdownProps) => {
                     alt="game console icon"
                     width={28}
                     height={24}
-                    className="absolute top-1/2 left-4 z-10 max-w-[20px] -translate-y-1/2 lg:max-w-[28px]"
+                    className="absolute top-1/2 left-4 z-10 max-w-[18px] -translate-y-1/2 lg:max-w-[26px]"
                 />
 
-                <p className="relative z-10 w-full pl-6 text-lg text-white">
+                <p className="relative z-10 w-full pl-6 text-white lg:text-lg">
                     {selectedGame ? selectedGame.label : 'Select the Game*'}
                 </p>
 
